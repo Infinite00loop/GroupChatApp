@@ -3,9 +3,17 @@ const express=require('express');
 const router=express.Router();
 
 router.get('/login' ,(req, res, next)=>{
-    res.send(
-        '<form action="/login" method="POST" ><input type="text" name="UserName" placeholder="UserName"><button type="submit">Login</button></form>')
 
+    res.send(`
+        
+        <form action="/login" method="POST"><input type="text" id="username" name="username" placeholder="username"><button type="submit" onclick="login()">Login</button></form>
+        <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            localStorage.setItem('username', username);
+        }
+        </script>
+    `) 
 });
 
 router.post('/login',(req,res,next)=>{
